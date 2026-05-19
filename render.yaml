@@ -7,8 +7,20 @@ services:
     dockerContext: ./backend
     dockerfilePath: ./Dockerfile
     envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: whale-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: whale-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: whale-db
+          property: database
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:postgresql://${DB_HOST}:${DB_PORT}/whaledb
+        value: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
       - key: SPRING_DATASOURCE_USERNAME
         fromDatabase:
           name: whale-db
@@ -29,6 +41,4 @@ services:
 databases:
   - name: whale-db
     plan: free
-    databaseName: whaledb
-    user: postgres
     region: oregon
