@@ -5,7 +5,7 @@ services:
     plan: free
     region: oregon
     dockerContext: ./backend
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./backend/Dockerfile
     envVars:
       - key: DB_HOST
         fromDatabase:
@@ -36,7 +36,7 @@ services:
     plan: free
     region: oregon
     dockerContext: ./frontend
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./frontend/Dockerfile
 
 databases:
   - name: whale-db
